@@ -7,6 +7,10 @@ class Brewery < ActiveRecord::Base
     puts "number of beers #{beers.count}"
 	end
 
+    def to_s
+    "#{name}"
+	end
+
 	def restart
     self.year = 2017
     puts "changed year to #{year}"

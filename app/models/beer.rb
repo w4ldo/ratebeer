@@ -3,7 +3,7 @@ class Beer < ActiveRecord::Base
   has_many :ratings
 
   def to_s
-    name
+    "#{name}, #{brewery.name}"
 	end
 
   def average_rating
