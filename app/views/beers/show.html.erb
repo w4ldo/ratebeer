@@ -19,7 +19,7 @@
 <% if @beer.ratings.empty? %>
     beer has not yet been rated!
 <% else %>
-    beer has 
+    Beer has 
       <%= pluralize(
          @beer.ratings.count,
          "rating"
