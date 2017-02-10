@@ -1,9 +1,15 @@
 class User < ActiveRecord::Base
     include RatingAverage
+    has_secure_password
     validates :username, uniqueness: true,
-                       length: { minimum: 3, maximum 30 }
-    has_many :ratings   # käyttäjällä on monta ratingia
+                       length: { minimum: 3, maximum: 30 }
+    has_many :ratings, dependent: :destroy
     has_many :beers, through: :ratings
+    has_many :memberships, dependent: :destroy
+    has_many :beer_clubs, through: :memberships
+    validates :password, length: { minimum: 4 }   
+    validates :password, format: { with: /([A-Z].*\d)|(\d.*[A-Z].*)/,
+              message: "should contain one number and one capital letter" }     
 
     def to_s
     "#{username}"
