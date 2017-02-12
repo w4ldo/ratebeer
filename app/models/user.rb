@@ -15,4 +15,17 @@ class User < ActiveRecord::Base
     "#{username}"
 	end
 
+    def favorite_beer
+     return nil if ratings.empty?
+     ratings.order(score: :desc).limit(1).first.beer
+    end
+
+    def favorite_style
+     return nil if ratings.empty?
+    end
+
+    def favorite_brewery
+     return nil if ratings.empty?
+    end
+
 end
